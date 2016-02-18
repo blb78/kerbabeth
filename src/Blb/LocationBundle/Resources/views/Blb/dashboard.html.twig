@@ -1,0 +1,399 @@
+{# src/Gwk/TodoBundle/Resources/views/Todo/index.html.twig #}
+
+{% extends "BlbLocationBundle::layout.html.twig" %}
+
+{% block title %}
+	Tableau de bord - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+   
+       
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+        <div class="container-fluid">
+          <!-- Brand and toggle get grouped for better mobile display -->
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{{path('index')}}"><i class="fa fa-home"></i> Kerbabeth</a>
+          </div>
+      
+          <!-- Collect the nav links, forms, and other content for toggling -->
+          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            <ul class="nav navbar-nav">
+              <li class="active"><a id="link_dashboard" href="{{path('dashboard')}}">Tableau de bord</a></li>
+             
+            </ul>
+	    <ul class="nav navbar-nav navbar-right">
+              <li class=""><a href="{{path('fos_user_security_logout')}}"><i class="fa fa-power-off"></i> Déconnexion</a></li>
+             
+            </ul>
+            
+           
+          </div><!-- /.navbar-collapse -->
+        </div><!-- /.container-fluid -->
+    </nav>
+    <div class="" style="padding-top: 70px; color: #222;">
+	{% for flashMessage in app.session.flashbag.get('notice') %}
+	    <div class="row">
+		<div id="flashMessage"class="alert alert-success alert-dismissible text-center col-xs-12 col-sm-4 col-sm-offset-4" >
+		     <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+		    <strong>Success !</strong>
+		    {{ flashMessage }}
+		</div>
+	    </div>
+	{% endfor %}
+        <div class="col-xs-12 col-sm-3">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-magic"></i>
+                        Ajouter une nouvelle réservation
+                    </h3>
+                </div>
+                <div class="panel-body">
+		    
+		    <div class="form-group">
+			<label for="start">1. Choisir la date d'arrivée des locataires</label>
+			<div class="input-group">
+			    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+			    <input type="text" id="Blb_LocationBundle_Reservationtype_start" name="Blb_LocationBundle_Reservationtype[start]" required="required" class="form-control daterange" placeholder="Date arrivée locataires">
+			</div>
+			
+		    </div>
+		    <div class="form-group">
+			<label for="end">2. Choisir la date de départ des locataires</label>
+			<div class="input-group">
+			    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+			    <input type="text" id="Blb_LocationBundle_Reservationtype_end" name="Blb_LocationBundle_Reservationtype[end]" required="required" class="form-control daterange" placeholder="Date départ locataires">
+			</div>
+		    </div>
+		    <button type="submit" class="btn btn-primary pull-right" onclick="addReservation()"> Valider</button>
+                </div>
+            </div>
+	    <div class="panel panel-danger">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                        <i class="fa fa-magic"></i>
+                        Ajouter une nouvelle indisponibilité
+                    </h3>
+                </div>
+                <div class="panel-body">
+		    
+		    <div class="form-group">
+			<label for="start">1. Choisir la date de début de l'indisponibilité</label>
+			<div class="input-group">
+			    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+			    <input type="text" id="indispo_start" name="indispo[start]" required="required" class="form-control daterange" placeholder="Date arrivée locataires">
+			</div>
+			
+		    </div>
+		    <div class="form-group">
+			<label for="end">2. Choisir la date de fin de l'indisponibilité</label>
+			<div class="input-group">
+			    <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+			    <input type="text" id="indispo_end" name="indispo[end]" required="required" class="form-control daterange" placeholder="Date départ locataires">
+			</div>
+		    </div>
+		    <button type="submit" class="btn btn-danger pull-right" onclick="addIndispo()"> Valider</button>
+		    
+                </div>
+		
+            </div>
+            
+        </div>
+        <div class="col-xs-12 col-sm-6">
+	    
+	    <div class="panel panel-primary">
+                <div class="panel-heading"><h3 class="panel-title"><i class="fa fa-calendar"></i> Calendrier</h3></div>
+                <div class="panel-body">
+                    <div id="calendar"></div>
+                    
+                </div>
+               
+            </div>
+            
+        </div>
+    </div>
+    <div class="modal fade" id="ModalEvent" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="color: #222;">
+        <div class="modal-dialog" >
+            <div id="js-load" class="modal-content"></div>
+        </div>
+    </div>
+   
+    
+{% endblock %}
+{% block javascripts %}
+     {{ parent() }}
+     <script>
+	function addReservation(){
+	    if (!checkInput('reservation')){
+		alert('Au moins une date n\'est pas renseignée !');
+	    }else{
+		$.ajax({
+		    
+			    url: "{{ path('reservation_add') }}",
+			    data: "start="+$('#Blb_LocationBundle_Reservationtype_start').val()+"&end="+$('#Blb_LocationBundle_Reservationtype_end').val(),
+			    type: "POST",
+			    cache: false,
+			    success: function(json){
+				    $('#calendar').fullCalendar( 'refetchEvents' );
+				    alert('Réservation ajoutée !');
+			    },
+			    error: function(responseText){
+				alert('Problème lors de l\'ajout de la réservation !');
+			    }
+			}); 
+	    }
+	    
+	}
+	function addIndispo(){
+	    if (!checkInput('indispo')){
+		alert('Au moins une date n\'est pas renseignée !');
+	    }else{
+		$.ajax({
+		    
+			    url: "{{ path('indispo_add') }}",
+			    data: "start="+$('#indispo_start').val()+"&end="+$('#indispo_end').val(),
+			    type: "POST",
+			    cache: false,
+			    success: function(json){
+				    $('#calendar').fullCalendar( 'refetchEvents' );
+				    alert('Indisponibilité ajoutée !');
+			    },
+			    error: function(responseText){
+				alert('Problème lors de l\'ajout de l\'indisponibilité !');
+			    }
+			}); 
+	    }
+	    
+	}
+	function checkInput(choix) {
+	    if (choix == 'reservation') {
+		if ((!($('#Blb_LocationBundle_Reservationtype_start').val()))||(!($('#Blb_LocationBundle_Reservationtype_end').val()))) {
+		    return false;
+		}
+		return true;
+	    }else{
+		if ((!($('#indispo_start').val()))||(!($('#indispo_end').val()))) {
+		    return false;
+		}
+		return true;
+	    }
+	    
+	}
+	$('#Blb_LocationBundle_Reservationtype_start').daterangepicker(
+            { 
+                format: 'YYYY-MM-DD',
+                startDate: moment(),
+                singleDatePicker: true,
+                locale: {
+                    applyLabel: 'Valider',
+                    fromLabel: 'De',
+                    toLabel: 'A',
+                    customRangeLabel: 'Custom Range',
+                    daysOfWeek: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve','Sa'],
+                    monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                    firstDay: 1
+                }
+            },
+	    function(start, end, label) {
+	      $('#Blb_LocationBundle_Reservationtype_end').data('daterangepicker').setStartDate(start);
+	    }
+        );
+	$('#Blb_LocationBundle_Reservationtype_end').daterangepicker(
+            { 
+                format: 'YYYY-MM-DD',
+                startDate: moment(),
+                singleDatePicker: true,
+                locale: {
+                    applyLabel: 'Valider',
+                    fromLabel: 'De',
+                    toLabel: 'A',
+                    customRangeLabel: 'Custom Range',
+                    daysOfWeek: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve','Sa'],
+                    monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                    firstDay: 1
+                }
+            }
+        );
+	$('#indispo_start').daterangepicker(
+            { 
+                format: 'YYYY-MM-DD',
+                startDate: moment(),
+                singleDatePicker: true,
+                locale: {
+                    applyLabel: 'Valider',
+                    fromLabel: 'De',
+                    toLabel: 'A',
+                    customRangeLabel: 'Custom Range',
+                    daysOfWeek: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve','Sa'],
+                    monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                    firstDay: 1
+                }
+            },
+	    function(start, end, label) {
+	      $('#indispo_end').data('daterangepicker').setStartDate(start);
+	    }
+        );
+	$('#indispo_end').daterangepicker(
+            { 
+                format: 'YYYY-MM-DD',
+                startDate: moment(),
+                singleDatePicker: true,
+                locale: {
+                    applyLabel: 'Valider',
+                    fromLabel: 'De',
+                    toLabel: 'A',
+                    customRangeLabel: 'Custom Range',
+                    daysOfWeek: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve','Sa'],
+                    monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                    firstDay: 1
+                }
+            }
+        );
+        $(document).ready(function() {
+            
+            $('body').removeClass('loading').addClass('loaded');
+            /* initialize the external events
+		-----------------------------------------------------------------*/
+	
+		$(' a.external-event').each(function() {
+		
+			// create an Event Object (http://arshaw.com/fullcalendar/docs/event_data/Event_Object/)
+			// it doesn't need to have a start or end
+			var eventObject = {
+				title: $.trim('réservé') // use the element's text as the event title
+				
+				
+			};
+			
+			// store the Event Object in the DOM element so we can get to it later
+			$(this).data('eventObject', eventObject);
+			
+			// make the event draggable using jQuery UI
+			$(this).draggable({
+				zIndex: 999,
+				revert: true,      // will cause the event to go back to its
+				revertDuration: 0  //  original position after the drag
+			});
+			
+		});
+            
+            // page is now ready, initialize the calendar...
+            
+            $('#calendar').fullCalendar({
+                // put your options and callbacks here
+                editable:true,
+                aspectRatio: 1.5,
+		firstDay: 1,
+		monthNames:['Janvier','Février','Mars','Avril','Mai','Juin','Juillet','Août','Septembre','Octobre','Novembre','Décembre'],
+		monthNamesShort:['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'],
+		dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+		dayNamesShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+                //eventColor: '#428bca',
+                events: "{{ path('load_json') }}",
+		
+                droppable: true,
+                drop: function(date, allDay) {
+			var formDate = $.fullCalendar.formatDate(date, 'yyyy-MM-dd');
+			// retrieve the dropped element's stored Event Object
+			var originalEventObject = $(this).data('eventObject');
+			
+			// we need to copy it, so that multiple events don't have a reference to the same object
+			var copiedEventObject = $.extend({}, originalEventObject);
+			
+			// assign it the date that was reported
+			copiedEventObject.start = date;
+			copiedEventObject.allDay = allDay;
+			$.ajax({
+			    url: "{{ path('reservation_new') }}",
+			    data: "myDate="+formDate,
+			    type: "POST",
+			    cache: false,
+			    success: function(json){
+				console.log(json);
+				    // render the event on the calendar
+				    // the last `true` argument determines if the event "sticks" (http://arshaw.com/fullcalendar/docs/event_rendering/renderEvent/)
+				    copiedEventObject.id = json[0]['id'];
+				    copiedEventObject.backgroundColor ='#428bca';
+				    copiedEventObject.borderColor = '#357ebd';
+				    $('#calendar').fullCalendar('renderEvent', copiedEventObject, true);
+				    alert('réservation ajoutée !');
+			    },
+			    error: function(responseText){
+				alert('Problème lors de l\'ajout de la réservation !');
+			    }
+			}); 
+                },
+		eventResize: function(event,dayDelta,minuteDelta,revertFunc) {
+		    
+		    $.ajax({
+			    url: "{{ path('reservation_resize') }}",
+			    data: "event_id="+event.id+"&dayDelta="+dayDelta,
+			    type: "POST",
+			    cache: false,
+			    success: function(responseText){
+				alert('Maj enregistrée !');
+			    },
+			    error:function(responseText){
+				alert('Problème lors de la maj ! Msg :'+responseText);
+			    }
+		    }); 
+		
+	    
+		},
+		eventDrop: function(event,dayDelta,minuteDelta,allDay,revertFunc) {
+		    
+		    $.ajax({
+			    url: "{{ path('reservation_event_drop') }}",
+			    data: "event_id="+event.id+"&dayDelta="+dayDelta,
+			    type: "POST",
+			    cache: false,
+			    success: function(responseText){
+				alert('Maj enregistrée !');
+			    },
+			    error:function(responseText){
+				alert('Problème lors de la maj ! Msg :'+responseText);
+			    }
+		    }); 
+		    
+	    
+		},
+		eventClick: function(calEvent, jsEvent, view) {
+		    
+		    $.ajax({
+			    url: "{{ path('reservation_event_click') }}",
+			    data: "event_id="+calEvent._id,
+			    type: "POST",
+			    cache: false,
+			   complete: function() {
+				$('#ModalEvent').modal({});
+			      },
+			  
+			      success: function(data) {
+				$('#js-load').html(data);
+			     },
+			    error:function(responseText){
+				alert('Erreur :'+responseText);
+			    }
+		    }); 
+		    	    
+	    
+		}
+		
+                //
+                //loading: function(bool) {
+                //    if (bool) $('#loading').show();
+                //    else $('#loading').hide();
+                //}
+            });
+        
+        });
+    </script>
+{% endblock %}

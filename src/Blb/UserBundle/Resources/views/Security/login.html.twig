@@ -1,0 +1,52 @@
+{% extends "BlbUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+    {% if error %}
+        <div>{{ error|trans }}</div>
+    {% endif %}
+  
+    <div class="container">
+        <div class="col-sm-6 col-sm-offset-3 jumbotron text-center" style="background-color: #FFF; color: #222;margin-top: 5%;">
+            <p style="margin-bottom: 20px;"><img class="img-circle" height="128" width="128" src="{{ asset('img/maison-face-test.jpg') }}"
+                    style="border-radius: 50%;-webkit-box-shadow: 0px 0px 0px 4px #222;
+	   -moz-box-shadow:  0px 0px 0px 4px #222;
+	        box-shadow:  0px 0px 0px 4px #222;"></p>
+           
+            <!-- LOGIN FORM -->
+            <form action="{{ path("fos_user_security_check") }}" method="post" role="form">
+                
+                    <div class="input-group" style="font-size: 14px;margin-bottom: 20px;">
+                        <span class="input-group-addon"><i class="fa fa-user  fa-fw"></i></span>
+                        <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" class="form-control" placeholder="Entrer un nom" />
+                    </div>
+                
+                    <div class="input-group" style="font-size: 14px;margin-bottom: 20px;">
+                        <span class="input-group-addon"><i class="fa fa-lock  fa-fw"></i></span>
+                        <input type="password" id="password" name="_password" required="required" class="form-control" placeholder="Entrer un mot de passe"/>
+                    </div>
+                   
+                <button type="submit" class="btn btn-warning">S'identifier</button>
+		<hr>
+                <a href="{{ path("index") }}" >Revenir à la page d'accueil</a>
+                
+             </form>
+             
+            
+            
+        </div>
+    </div>
+        
+    
+{% endblock fos_user_content %}
+{%block javascripts%}
+    {{parent()}}
+    <script>
+     $(document).ready(function() {
+	$('body').removeClass('loading').addClass('loaded');
+	
+	
+    });
+</script>
+{%endblock%}

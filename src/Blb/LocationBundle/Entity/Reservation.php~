@@ -1,0 +1,485 @@
+<?php
+
+namespace Blb\LocationBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Component\Validator\ExecutionContextInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+/**
+ * Blb\LocationBundle\Entity\Reservation
+ *
+ * @ORM\Table(name="reservation")
+ * @ORM\Entity(repositoryClass="Blb\LocationBundle\Entity\ReservationRepository")
+ * @ORM\HasLifecycleCallbacks()
+ */
+
+class Reservation 
+{
+
+
+    /**
+     * @var integer $id
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    /**
+     * @var string $title
+     *
+     * @ORM\Column(name="title", type="text")
+     */
+    private $title;
+   
+    /**
+     * @var boolean $allday
+     *
+     * @ORM\Column(name="allday", type="boolean", nullable=true)
+     */
+    private $allday;
+    /**
+     * @var \DateTime $start
+     * 
+     * @ORM\Column(name="start", type="datetime")
+     * @Assert\DateTime()
+     */
+    private $start;
+    /**
+     * @var \DateTime $end
+     * 
+     * @ORM\Column(name="end", type="datetime")
+     * @Assert\DateTime()
+     */
+    private $end;
+    /**
+     * @var string $url
+     *
+     * @ORM\Column(name="url", type="text", nullable=true)
+     */
+    private $url;
+    /**
+     * @var string $classname
+     *
+     * @ORM\Column(name="classname", type="text", nullable=true)
+     */
+    private $classname;
+    /**
+     * @var boolean $editable
+     *
+     * @ORM\Column(name="editable", type="boolean", nullable=true)
+     */
+    private $editable;
+    /**
+     * @var boolean $starteditable
+     *
+     * @ORM\Column(name="starteditable", type="boolean", nullable=true)
+     */
+    private $starteditable;
+    /**
+     * @var boolean $durationeditable
+     *
+     * @ORM\Column(name="durationeditable", type="boolean", nullable=true)
+     */
+    private $durationeditable;
+    /**
+     * @var string $color
+     *
+     * @ORM\Column(name="color", type="text", nullable=true)
+     */
+    private $color;
+    /**
+     * @var string $backgroundcolor
+     *
+     * @ORM\Column(name="backgroundcolor", type="text", nullable=true)
+     */
+    private $backgroundcolor;
+    /**
+     * @var string $bordercolor
+     *
+     * @ORM\Column(name="bordercolor", type="text", nullable=true)
+     */
+    private $bordercolor;
+    
+    
+    /**
+     * @var \DateTime $updated_at
+     * 
+     * @ORM\Column(name="updated_at", type="datetime", nullable=true)
+     * @Assert\DateTime()
+     */
+    private $updated_at;
+    /**
+     * @var \DateTime $created_at
+     * 
+     * @ORM\Column(name="created_at", type="datetime")
+     * @Assert\DateTime()
+     */
+    private $created_at;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this ->created_at = new \Datetime;
+        $this->payer = FALSE;
+        $this->color = '#FFF';
+        $this->backgroundcolor = '#d9534f';
+        $this->bordercolor = '#d43f3a';
+        $this->allday = TRUE;
+        $this->editable = TRUE;
+        $this->starteditable = TRUE;
+        $this->durationeditable = TRUE;
+        
+        
+    }
+    
+    /**
+     * @ORM\PreUpdate
+     */    
+    public function updateDate()
+    {
+      $this->setUpdatedAt(new \Datetime());
+    }
+
+
+ 
+
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Reservation
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set allday
+     *
+     * @param boolean $allday
+     * @return Reservation
+     */
+    public function setAllday($allday)
+    {
+        $this->allday = $allday;
+    
+        return $this;
+    }
+
+    /**
+     * Get allday
+     *
+     * @return boolean 
+     */
+    public function getAllday()
+    {
+        return $this->allday;
+    }
+
+    /**
+     * Set start
+     *
+     * @param \DateTime $start
+     * @return Reservation
+     */
+    public function setStart($start)
+    {
+        $this->start = $start;
+    
+        return $this;
+    }
+
+    /**
+     * Get start
+     *
+     * @return \DateTime 
+     */
+    public function getStart()
+    {
+        return $this->start;
+    }
+
+    /**
+     * Set end
+     *
+     * @param \DateTime $end
+     * @return Reservation
+     */
+    public function setEnd($end)
+    {
+        $this->end = $end;
+    
+        return $this;
+    }
+
+    /**
+     * Get end
+     *
+     * @return \DateTime 
+     */
+    public function getEnd()
+    {
+        return $this->end;
+    }
+
+    /**
+     * Set url
+     *
+     * @param string $url
+     * @return Reservation
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    
+        return $this;
+    }
+
+    /**
+     * Get url
+     *
+     * @return string 
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * Set classname
+     *
+     * @param string $classname
+     * @return Reservation
+     */
+    public function setClassname($classname)
+    {
+        $this->classname = $classname;
+    
+        return $this;
+    }
+
+    /**
+     * Get classname
+     *
+     * @return string 
+     */
+    public function getClassname()
+    {
+        return $this->classname;
+    }
+
+    /**
+     * Set editable
+     *
+     * @param boolean $editable
+     * @return Reservation
+     */
+    public function setEditable($editable)
+    {
+        $this->editable = $editable;
+    
+        return $this;
+    }
+
+    /**
+     * Get editable
+     *
+     * @return boolean 
+     */
+    public function getEditable()
+    {
+        return $this->editable;
+    }
+
+    /**
+     * Set starteditable
+     *
+     * @param boolean $starteditable
+     * @return Reservation
+     */
+    public function setStarteditable($starteditable)
+    {
+        $this->starteditable = $starteditable;
+    
+        return $this;
+    }
+
+    /**
+     * Get starteditable
+     *
+     * @return boolean 
+     */
+    public function getStarteditable()
+    {
+        return $this->starteditable;
+    }
+
+    /**
+     * Set durationeditable
+     *
+     * @param boolean $durationeditable
+     * @return Reservation
+     */
+    public function setDurationeditable($durationeditable)
+    {
+        $this->durationeditable = $durationeditable;
+    
+        return $this;
+    }
+
+    /**
+     * Get durationeditable
+     *
+     * @return boolean 
+     */
+    public function getDurationeditable()
+    {
+        return $this->durationeditable;
+    }
+
+    /**
+     * Set color
+     *
+     * @param string $color
+     * @return Reservation
+     */
+    public function setColor($color)
+    {
+        $this->color = $color;
+    
+        return $this;
+    }
+
+    /**
+     * Get color
+     *
+     * @return string 
+     */
+    public function getColor()
+    {
+        return $this->color;
+    }
+
+    /**
+     * Set backgroundcolor
+     *
+     * @param string $backgroundcolor
+     * @return Reservation
+     */
+    public function setBackgroundcolor($backgroundcolor)
+    {
+        $this->backgroundcolor = $backgroundcolor;
+    
+        return $this;
+    }
+
+    /**
+     * Get backgroundcolor
+     *
+     * @return string 
+     */
+    public function getBackgroundcolor()
+    {
+        return $this->backgroundcolor;
+    }
+
+    /**
+     * Set bordercolor
+     *
+     * @param string $bordercolor
+     * @return Reservation
+     */
+    public function setBordercolor($bordercolor)
+    {
+        $this->bordercolor = $bordercolor;
+    
+        return $this;
+    }
+
+    /**
+     * Get bordercolor
+     *
+     * @return string 
+     */
+    public function getBordercolor()
+    {
+        return $this->bordercolor;
+    }
+
+    /**
+     * Set updated_at
+     *
+     * @param \DateTime $updatedAt
+     * @return Reservation
+     */
+    public function setUpdatedAt($updatedAt)
+    {
+        $this->updated_at = $updatedAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get updated_at
+     *
+     * @return \DateTime 
+     */
+    public function getUpdatedAt()
+    {
+        return $this->updated_at;
+    }
+
+    /**
+     * Set created_at
+     *
+     * @param \DateTime $createdAt
+     * @return Reservation
+     */
+    public function setCreatedAt($createdAt)
+    {
+        $this->created_at = $createdAt;
+    
+        return $this;
+    }
+
+    /**
+     * Get created_at
+     *
+     * @return \DateTime 
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+}

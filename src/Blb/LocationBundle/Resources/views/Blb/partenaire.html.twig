@@ -1,0 +1,32 @@
+{# src/Gwk/TodoBundle/Resources/views/Todo/index.html.twig #}
+
+{% extends "BlbLocationBundle::layout.html.twig" %}
+
+{% block title %}
+	partenaire - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+    {{ parent() }}
+    
+	
+	<div class="row" >
+	   <ul class="list-inline">
+                <li><a href="http://www.ideoref.com" title="Référencement automatique gratuit" target="_blank">ideoref</a></li>
+		<li><a title="Location paimpol" href='http://www.morbreizh.fr/' target='_blank'> Morbreizh, locations d'appartements sur Paimpol</a></li>
+           </ul>
+	</div>
+	    
+    
+{% endblock %}
+{% block javascripts %}
+     {{ parent() }}
+     <script>
+       
+        $(document).ready(function() {
+            $('body').removeClass('loading').addClass('loaded');
+            
+        
+        });
+    </script>
+{% endblock %}

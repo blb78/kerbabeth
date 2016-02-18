@@ -1,0 +1,7 @@
+parameters:
+#    blb_location.example.class: Blb\LocationBundle\Example
+
+services:
+#    blb_location.example:
+#        class: %blb_location.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

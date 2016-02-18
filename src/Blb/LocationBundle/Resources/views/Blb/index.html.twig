@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+    
+<html style="color: #FFF" lang="fr">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no">
+        <meta name="description" content="Chez babeth, location de maison sur l'ile de Bréhat. Accessible aux personnes à mobilité réduite.">
+        <meta name="keywords" content="ile,île,Ile,Île,bréhat,Bréhat,brehat,Brehat,Location,location,Locations,locations,Maisons,maisons,maison,Maison,
+        réservation,réservations,reservation,reservations,Tourisme, tourisme, granit,rose,enfants,enfant,jardin,villa,Handicapé,handicapé,mobilité">
+        <meta name="robots" content="index">
+        <meta name="REVISIT-AFTER" content="7 days">
+        <title>{% block title %}KerBabeth, location de maison sur l'île de Bréhat{% endblock %}</title>
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<!--[if lte IE 9 ]><link rel="stylesheet" href="{{ asset('css/ie.css') }}" type="text/css" /><![endif]-->  
+	<!--[if (gt IE 9) | (!IE)]><!--><link rel="stylesheet" href="{{ asset('css/myCss.min.css') }}" type="text/css" /><!--<![endif]-->
+	
+	
+    </head>
+    
+    <body class="loading" >
+	
+	<div  class="ie">
+	    <div class="container alert">
+		Aië ! Vous surfez avec un navigateur dépassé ! Choisissez une version d'Internet Explorer plus récente ! ( IE10 min )
+	    </div>
+	</div> 
+	
+        <div id="skrollr-body" class="font-smoothing">
+	{{include ('BlbLocationBundle:Blb:menu.html.twig')}}
+	<section id="slide-home" class="homeSlide" >
+	    <div class="bg"
+		data-_deb1="background-position: 50% 0px;"
+		data-_fin1="background-position: 50% -300px;"
+		data-anchor-target="#slide-home"
+	    >
+		
+		
+		    <div class="hsContainer">
+			{% for flashMessage in app.session.flashbag.get('notice') %}
+			    <div class="row">
+				<div class="col-xs-12 col-sm-4 col-sm-offset-4">
+				    <div class="alert alert-success alert-dismissible text-center" role="alert">
+					<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<strong>{{ flashMessage }}</strong>
+				    </div>
+				</div>
+			    </div>
+			{% endfor %}
+			<div class="hsContent" >
+			    <div class="jumbotron" style="background-color:transparent;padding:0px;color:#FFF">
+				<h1 id="babeth">Chez Babeth</h1>
+				<h2 id="location">Location Maison</h2>
+				<h2 id="brehat">Ile de Bréhat</h2>
+				<br>
+				
+				    <a href="#slide-titre1" style="color : #FFF">
+				    	<i class="fa fa-angle-double-down fa-4x"></i>
+				    </a>
+			    </div>
+			</div>
+		    </div>
+		    
+		
+	    </div>
+	    <div class="overlay "></div>
+	    <div id="blur" class="bg2" style="height: 100%;background-repeat: no-repeat;background-size: cover;"></div>
+	    
+	</section>
+	<section id="slide-titre1" data-menu-offset="-50">
+	    <div class="bg" data-anchor-target="#slide-titre1">
+		<div class="hsContainer">
+		    <div class="hsContent">
+			<div
+			    data-bottom-top="margin-right: -33%"                   
+			    data-100-center-top="margin-right: 0"
+			    data-anchor-target="#slide-titre1"
+			>
+			    <h3>Maison 80 m² 6 Personnes</h3>
+			    <h3>3 Chambres - 2 Lits Doubles - 2 Lits Simples</h3>
+			    <h3>Salon - Cuisine - Sdb - Wc </h3>
+			    <h3>Jardin : 600 m2</h3>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</section>
+	<section id="slide-galereya" class="homeSlide " data-menu-offset="60">
+		<h1 class="hidden">Bréhat location maison - galerie</h1>
+	    <div class="bg" data-anchor-target="#slide-galereya">
+			<noscript>
+			    <img src="{{ asset('img/mini/brehat-location-pergola.jpg') }}" 
+				alt="Bréhat location maison Jardin"
+				title="Bréhat location maison Jardin"
+				height="240"
+				width="320"
+			    />
+			    <img
+				 src="{{ asset('img/mini/brehat-location-face.jpg') }}" 
+				alt="Bréhat location maison"
+				title="Bréhat location maison"
+				height="240"
+				width="320"
+			    />
+			    <img src="{{ asset('img/mini/brehat-location-glycine.jpg') }}" 
+				alt="Bréhat location maison Entrée"
+				title="Bréhat location maison Entrée"
+				height="240"
+				width="320"
+			    />
+			    <img src="{{ asset('img/mini/brehat-location-chambre-1.jpg') }}" 
+				alt="Bréhat location maison Chambre rdc"
+				title="Bréhat location maison Chambre rdc"
+				height="240"
+				width="320"
+			    />
+			    <img src="{{ asset('img/mini/brehat-location-chambre-2.jpg') }}" 
+				alt="Bréhat location maison Chambre étage"
+				title="Bréhat location maison Chambre étage"
+				height="240"
+				width="320"
+			    />
+			    <img src="{{ asset('img/mini/brehat-location-chambre-3.jpg') }}" 
+				alt="Bréhat location maison Chambre Enfants étage"
+				title="Bréhat location maison Chambre Enfants étage"
+				height="240"
+				width="320"
+			    />
+			    <img src="{{ asset('img/mini/brehat-location-sdb.jpg') }}" 
+				alt="Bréhat location maison sdb"
+				title="Bréhat location maison sdb"
+				height="240"
+				width="320"
+			    />
+			    <img src="{{ asset('img/mini/brehat-location-cuisine.jpg') }}" 
+				alt="Bréhat location maison cuisine"
+				title="Bréhat location maison cuisine"
+				height="240"
+				width="320"
+			    />
+			    <img src="{{ asset('img/mini/brehat-location-salon3.jpg') }}" 
+				alt="Bréhat location maison salon"
+				title="Bréhat location maison salon"
+				data-desc=""
+				height="240"
+				width="320"
+			    />
+			    <img src="{{ asset('img/mini/brehat-location-salon2.jpg') }}" 
+				alt="Bréhat location maison salon"
+				title="Bréhat location maison salon"
+				height="240"
+				width="320"
+			    />
+			    <img src="{{ asset('img/mini/brehat-location-salon.jpg') }}" 
+				alt="Bréhat location maison salon"
+				title="Bréhat location maison salon"
+				height="240"
+				width="320"
+			    />
+			</noscript>
+			
+			<div id="galereya" ></div>
+			
+	    </div>
+	</section>
+	<section id="slide-info">
+	    <div class="bg" data-anchor-target="#slide-info">
+		<div class="hsContainer">
+		    <div class="hsContent">
+			<div data-bottom-top="margin-left: -33%"                   
+			    data-100-bottom="margin-left: 0"
+			    data-anchor-target="#slide-info"
+			     >
+			    <i class="fa fa-info-circle fa-2x"></i>
+			    <h3>Maison accessible aux personnes à mobilité réduite</h3>
+			    <h3>Maison équipée pour les enfants, lit parapluie, jeux, livres...</h3>
+			    <h3>Serviettes de toilettes fournies, draps fournis</h3>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</section>
+	<section id="slide-titre3" data-menu-offset="-50"
+		
+	>
+	    <div class="bg" 
+		 data-center-top="background-color:rgb(34,34,34)"                   
+		data-100-top="background-color:rgb(248,248,248)"
+		data-anchor-target="#slide-titre3"
+	    >
+		<div class="hsContainer">
+		    <div class="hsContent"
+			    data-center-top="color:rgb(34,34,34)"                   
+			    data-100-top="color:rgb(119,119,119)"
+			    data-anchor-target="#slide-titre3"
+		    >
+			<h2
+			    
+			    data-center-top="opacity: 0"                   
+			    data-100-top="opacity: 1"
+			    data-anchor-target="#slide-titre3"
+			>
+			    BRÉHAT
+			</h2>
+		    </div>
+		</div>
+	    </div>
+	</section>
+	<section id="slide-map" class="homeSlide" >
+		<h1 class="hidden">Bréhat location maison - map</h1>
+	    <div class="bg"  data-anchor-target="#slide-map">
+		<div class="hsContainer">
+		    <div id="map-canvas"  style=" height:100%; "></div>
+		    <button id="map-btn" ><i class="fa fa-angle-left fa-lg"></i></button>
+		    <div id="map-info" >
+			<ul class="list-unstyled" style="padding: 5px;">
+			    
+			    <li><em class="text-danger">Attention</em> il n'y a pas de distributeur automatique de billet de banque sur l'île.</li>
+			    <li><hr></li>
+			    <li>Pensez à vérifier les horaires de marée.</li>
+			    <li><hr></li>
+			    <li>Hormis vos pieds, le vélo sera votre seul moyen de locomotion.</li>
+			    
+			</ul>
+		    </div>
+		</div>
+		
+	    </div>
+	</section>
+	
+	<section id="slide-titre4" data-menu-offset="-50">
+	    <div class="bg" data-anchor-target="#slide-titre4">
+		<div class="hsContainer">
+		    <div class="hsContent">
+			<h2
+			    data-center-top="opacity: 0"                   
+			    data-100-top="opacity: 1"
+			    data-anchor-target="#slide-titre4"
+			>
+			    RÉSERVATIONS
+			</h2>
+		    </div>
+		</div>
+	    </div>
+	</section>
+	
+	<section id="slide-calendar"  class="homeSlide">
+		<h1 class="hidden">Bréhat location maison - réservation</h1>
+	    <div class="bg"
+		 
+		 data-bottom="background-position: 50% 0px;"
+		data-top-bottom="background-position: 50% -300px;"
+		data-anchor-target="#slide-calendar" >
+		<div class="hsContainer">
+		    <div class="hsContent" data-anchor-target="#slide-calendar" style="margin-top:0px;">
+			<div class="container">
+			    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 bg-lighter">
+				<div id="calendar"></div>
+			    </div>
+			</div>
+		    </div>
+		</div>
+	    </div>
+	</section>
+	<section id="slide-contact" data-menu-offset="-50">
+	    <div class="bg"
+		    data-anchor-target="#slide-contact"
+		>
+		<div class="hsContainer" >
+		    <div class="hsContent ">
+			    <div class="container">
+				<div class="row hidden-xs">
+				    <h2>Appréciations</h2>
+				    <div class="carousel slide" data-ride="carousel" id="quote-carousel" >
+					<!-- Bottom Carousel Indicators -->
+					<ol class="carousel-indicators" style="bottom: 0; color: #EBEBEB">
+					  <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+					  <li data-target="#quote-carousel" data-slide-to="1" class=""></li>
+					  <li data-target="#quote-carousel" data-slide-to="2" class=""></li>
+					</ol>
+					
+					<!-- Carousel Slides / Quotes -->
+					<div class="carousel-inner" style="min-height: 200px;">
+					  <!-- Quote 1 -->
+					  <div class="item active">
+					      <dl>
+						  <dt><img alt="photo" class="img-circle" height="50" width="50" src="{{ asset('img/avatar.jpg') }}" ></dt>
+						  <dd>
+						      <blockquote style="border: none;">
+							  <p>"Maison très sympa. Propriétaires adorable. Tout est comme décrit : pas de mauvaise surprise. Trois jardins disposés pour être à l'abris des regards. Idéal pour familles."</p>
+							  <small>Antoine L. (France) - <a href="http://www.homelidays.com/hebergement/p6246521" target="_blank">@Homeholidays</a></small>
+						      </blockquote>
+						  </dd>
+					      </dl>
+					  </div>
+					  <!-- Quote 2 -->
+					  <div class="item">
+					      <dl>
+						  <dt><img alt="photo" class="img-circle" height="50" width="50" src="{{ asset('img/avatar.jpg') }}" style="vertical-align: middle;"></dt>
+						  <dd>
+						      <blockquote style="border: none;">
+							  <p>"Séjour extrêmement agréable. Accueil environnement, maison et jardin : tout était parfait !"</p>
+							  <small>Anne J. (France) - <a href="http://www.homelidays.com/hebergement/p6246521" target="_blank">@Homeholidays</a></small>
+						      </blockquote>
+						  </dd>
+					      </dl>
+					  </div>
+					  <!-- Quote 3 -->
+					  <div class="item">
+					      <dl>
+						  <dt><img alt="photo" class="img-circle" height="50" width="50" src="{{ asset('img/avatar.jpg') }}" style="vertical-align: middle;"></dt>
+						  <dd>
+						      <blockquote style="border: none;">
+							  <p>"Excellente prestation : accueil chaleureux, cadre magnifique, calme, maison spacieuse, très propre, comme neuve, cuisine sur-équipée, grandes chambres, jeux et livres à disposition pour les enfants, grande pièce avec salle à manger et salon avec cheminée, beau jardin :grande pelouse et un potager. Située proche du bourg à pied ou en vélo. A conseiller."</p>
+							  <small>Pascale E. (France) - <a href="http://www.homelidays.com/hebergement/p6246521" target="_blank">@Homeholidays</a></small>
+						      </blockquote>
+						  </dd>
+					      </dl>
+					  </div>
+				      </div>
+				    </div>     
+				</div>
+				<div class="row">
+				    <div class="text-left col-xs-12 col-sm-12 col-md-6 col-lg-4">
+				       <h2>Contact</h2>
+				       <h4><i class="fa fa-envelope-o"></i> Crec'h Tarrec, 22870 Ile de Bréhat</h4>
+				       <h4 id="js-mail"></h4>
+				       <h4><i class="fa fa-send"></i> <a href="#" title="Nous écrire" onclick="showModalForm(event)">Nous envoyer un message</a></h4>
+				       
+					
+					
+				    </div>
+				    <div class="text-left col-xs-12 col-sm-12 col-md-6 col-lg-4">
+					<h2 style="margin-bottom:10px;">Les Tarifs</h2>
+					<div class="alert alert-success">
+					    <p><b>65 €</b> / nuitée / 2 pers</p>
+					</div>
+					<div class="alert alert-warning">
+					    <p>Basse-saison : <b>750 €</b> / semaine</p>
+					</div>
+					<div class="alert alert-danger">
+					    <p>Haute-saison :  <b>1100 €</b> / semaine</p>
+					</div>
+				    </div>
+				    <div class="text-left col-xs-12 col-sm-12 col-md-6 col-lg-4">
+				       <h2>Liens Utiles</h2>
+					<h4><a title="Syndicat d initiative de Bréhat" href='http://www.brehat-infos.fr/' target='_blank'> Syndicat d'initiative</a></h4>
+					<h4><a title="Commerces présents sur Bréhat" href='http://www.brehat-infos.fr/les-commerces-de-brehat.html' target='_blank'> Commerces de Bréhat</a></h4>
+					<h4><a title="Horaires des vedettes" href='http://www.vedettesdebrehat.com/fr/formules4.php?fiche=2' target='_blank'> Les vedettes de Bréhat</a></h4>
+					<h4><a title="Locations sur Paimpol" href='http://www.morbreizh.fr' target='_blank'> Locations appartements Paimpol</a></h4>
+					
+					
+				    </div>
+				    
+				    
+				    
+				</div>
+				
+			    </div>
+		    </div>
+		</div>
+	    </div>
+	</section>
+	<section id="slide-titre5" data-menu-offset="-50">
+		<h1 class="hidden">Bréhat location maison - contact</h1>
+	    <div class="bg" data-anchor-target="#slide-titre5">
+		<div class="hsContainer">
+		    <div class="hsContent">
+			
+			    <div class="container social-plugin text-center">
+				<hr style="border-color: #3c3c3c">
+				    <a class="twitter" href="http://twitter.com/share?url=http://kerbabeth.fr" target="_blank"><i class="fa fa-twitter fa-fw fa-2x"></i></a>
+				    <a class="facebook" href="http://www.facebook.com/sharer.php?u=http://kerbabeth.fr" target="_blank"><i class="fa fa-facebook fa-fw fa-2x"></i></a>
+				    <a class="google-plus" href="https://plus.google.com/share?url=http://kerbabeth.fr" target="_blank"><i class="fa fa-google-plus fa-fw fa-2x"></i></a>
+				    <a class="pinterest" href="javascript:void((function()%7Bvar%20e=document.createElement('script');e.setAttribute('type','text/javascript');e.setAttribute('charset','UTF-8');e.setAttribute('src','//assets.pinterest.com/js/pinmarklet.js?r='+Math.random()*99999999);document.body.appendChild(e)%7D)());"><i class="fa fa-pinterest fa-fw fa-2x"></i></a>
+				
+			    </div>
+				    
+				
+		    </div>
+		</div>
+	    </div>
+	</section>
+	
+    </div>
+<div class="modal fade" id="ModalEcrire" tabindex="-1" role="dialog" style="color: #222;">
+    <div class="modal-dialog" >
+	<div id="js-load" class="modal-content"></div>
+    </div>
+</div>
+
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    
+    
+    <script type="text/javascript" src="{{ asset('js/global.min.js') }}"></script>
+    <script type="text/javascript"
+	src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA1oCHyDdAHjs-6RYhQlsTun1cWj0-043Y&amp;sensor=false">
+    </script>
+   
+
+<script>
+    var params;
+    function showModalForm (e){
+	
+	e.preventDefault();
+	jQuery.ajax({
+		url: "{{ path('nous_ecrire') }}",
+		type: "POST",
+		cache: false,
+	       complete: function() {
+		    $('#ModalEcrire').modal({});
+		    $('#Blb_LocationBundle_Messagetype_epoch').val(($.now() / 1000) | 0);
+		  },
+	      
+		  success: function(data) {
+		    $('#js-load').html(data);
+		 },
+		error:function(responseText){
+		    alert('Erreur :'+responseText);
+		}
+	}); 
+    }
+    $(function() {
+	$('a[href*=#]:not([href=#])').click(function() {
+	    
+	  if (location.pathname.replace(/^\//,'') == this.pathname.replace(/^\//,'') && location.hostname == this.hostname) {
+	    var target = $(this.hash);
+	    target = target.length ? target : $('[name=' + this.hash.slice(1) +']');
+	   
+	    if (target.length) {
+		navTimeout = setTimeout((function() {
+                    $('html,body').animate({
+			scrollTop: target.offset().top -20
+		      }, 1500,'easeOutCubic');
+			
+                }), 100);
+	      return false;
+	    }
+	  }
+	});
+    });
+    function genereadresse(prefix,suffix) {
+	$('#js-mail').append("<i class='fa fa-envelope'></i> <a href=" + "mail" + "to:" + prefix + "@" + suffix + ">" + prefix + "@" + suffix + "</a>");
+    }
+    function generesubmit() {
+	$('#js-form-submit').append('<button type="submit" class="btn btn-primary">Envoyer</button>');
+    }
+    function adjustFullcalendar(){
+	var calendarH = $('#calendar').height();
+	$('#slide-calendar').height(calendarH + 20);
+    }
+    function adjustGalereya(width){
+	if ( width< 570){
+	    $('#slide-galereya').height((210*12));
+	}else if( width>= 570 && winW< 753){
+	    $('#slide-galereya').height((210*6));
+	}else if ( width>= 753 && winW< 977){
+	    $('#slide-galereya').height((263*6)+ 20);
+	}else if ( width>= 977 && winW< 1185){
+	    $('#slide-galereya').height((225*4)+ 20);
+	}else {
+	    $('#slide-galereya').height((263*4)+ 20);
+	}
+    }
+    function adjustWindow(){
+	winH = $window.height();
+	winW = $(window).width();
+	// Resize our slides
+	$slide.height(winH);
+	$slideTall.height(winH*2);
+	$slideTall2.height(winH*3);
+	if( (winW > 992) && (!(/Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i).test(navigator.userAgent || navigator.vendor || window.opera))){
+	    // Get window size
+	     
+	    adjustGalereya(winW);
+	    var skr = skrollr.init({
+		smoothScrolling: true,
+		smoothScrollingDuration: 400,
+		constants: {
+		    fin0: winH,
+		    deb1: '0',
+		    fin1: function() {
+			//offset = l'offest de l'element quand le bottom est au top du viewport.
+			return offset = this.relativeToAbsolute(document.getElementById('slide-home'), 'top', 'bottom');
+		    },
+		    menu1: winH/2,
+		    menu2:  winH-50
+		}
+	    });
+	}else if( (winW > 768) && (!(/Android|iPhone|iPad|iPod|BlackBerry|Windows Phone/i).test(navigator.userAgent || navigator.vendor || window.opera))){
+	   
+	   
+	    adjustGalereya(winW);
+	}else{
+	    
+	    g.options.disableSliderOnClick = true;
+	    adjustGalereya(winW);
+	}
+    };
+    function lazyLoadGoogleMap() {
+	$.getScript("http://maps.google.com/maps/api/js?sensor=true&callback=initializeMap")
+	.done(function (script, textStatus) {            
+	  
+	})
+	.fail(function (jqxhr, settings, ex) {
+	    alert("Could not load Google Map script: " + jqxhr);
+	});
+    };
+    function initializeMap() {
+	initialize(params);
+    };
+    function initialize(params) {
+	var myLatlng = new google.maps.LatLng(48.842704,-3.003068);
+	var mapOptions = {
+	    zoom: 15,
+	    scrollwheel: false,
+	    mapTypeControl: false,
+	    center: myLatlng,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP,
+	    draggable: false,
+	    zoomControl: true,
+	    zoomControlOptions: {
+	      style: google.maps.ZoomControlStyle.SMALL,
+	      position: google.maps.ControlPosition.LEFT_TOP
+	    }
+	}
+	var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+	var locations = [
+	    ['Cale 3', 48.836189,-3.009264,'{{ asset('img/map/ink-map-marker-3.png') }}'],
+	    ['Cale 2', 48.838174,-3.005085,'{{ asset('img/map/ink-map-marker-2.png') }}'],
+	    ['Port clos', 48.840698, -3.003580,'{{ asset('img/map/ink-map-marker-port.png') }}'],
+	    ['Bourg', 48.845875, -3.000520,'{{ asset('img/map/ink-map-marker-bourg.png') }}'],
+	    ['Plage', 48.8382137,-2.9979104,'{{ asset('img/map/ink-map-marker-plage.png') }}'],
+	    ['Citadelle', 48.8383761,-3.0079365,'{{ asset('img/map/ink-map-marker-citadelle.png') }}'],
+	    ['Chez Babeth',48.842704,-3.003068,'{{ asset('img/map/ink-map-marker-babeth.png') }}']
+	  ];
+	var marker,monIconPerso, i;
+	var popover =[
+	    
+	    ['<h4 >Cale n°3</h4><p>Lorsque la mer est basse, c\'est sur cette cale que vous serez débarqué.</p></div> '],
+	    ['<h4 >Cale 2</h4><p>Lorsque la mer est en mi marée, c\'est sur cette cale que vous serez débarqué.</p></div> '],
+	    ["<h4>Le Port Clos</h4>"
+		+"<img src='../img/map/brehat-location-map-port.jpg' alt='brehat location maison '" 
+		+" width='200' height='150' />"
+		+"<p>A 200m de la maison, <i>Le Port Clos</i> est le principal port de l'île. "
+		+"Il est déservi par <a title='Horaires des vedettes de Bréhat' href='http://www.vedettesdebrehat.com/fr/formules4.php?fiche=2'target='_blank'> les vedettes de Bréhat</a>. "
+		+"<b>Attention</b>, suivant la marée, l'embarquement et le débarquement se font à différents niveaux de la cale. "
+		+"Si vous êtes en <i>cale 3</i>, il vous faudra faire 800m à pied pour rejoindre l'île, avec vos bagages...</p>"],
+	    ["<h4>Le Bourg</h4>"
+		+"<img src='../img/map/bourg.jpg' width='180' height='135'alt='brehat location maison ' />"
+		+"<div><p>A 300m de la maison, la place centrale appelée <i>le bourg</i> de l'ile. "
+		+"Vous y trouverez le bureau de poste, des restaurants, bars, superette...  </p></div> "],
+	    ["<h4>Plage</h4>"
+		+"<img src='../img/map/brehat-location-plage.jpg' width='180' height='135' alt='brehat location maison '/>"
+		+"<div><p>A 500m de la maison, la plage du guerzido. Vous y trouverez une restauration rapide et le <a href='http://www.les-albatros.com/' target='_blank'>centre nautique les albatros</a></p></div> "],
+	    ["<h4>Citadelle</h4>"
+		+"<img src='../img/map/citadelle.jpg' width='180' height='135' alt='brehat location maison '/>"
+		+"<div><p>A 1km de la maison, la Citadelle de Bréhat. Construite au XIX ème siècle, elle habrite les "
+		+"<a title='Verreries de Bréhat' href='http://www.verreriesdebrehat.com'target='_blank'> Verreries de Bréhat</a>."
+		+" Plusieurs verriers réalisent chaques jours leurs oeuvres et le public peut y assister.</p></div> "],
+	    ["<h4>Chez Babeth</h4>"
+		+"<img src='../img/map/brehat-location.jpg' width='180' height='135' alt='brehat location maison '/>"
+		+"<div><p><i>Chez Babeth</i>, Maison 80 m² 6 Personnes, 3 Chambres - 2 Lits Doubles - 2 Lits Simples, Salon - Cuisine - Sdb - Wc - "
+		+"<i class='fa fa-wheelchair'></i>, jardin 600m²</p></div> "],
+	    
+	   
+	];
+	var infowindow =  new google.maps.InfoWindow({
+		content: "",
+		maxWidth:200
+	    });
+	for (i = 0; i < locations.length; i++) {
+	    monIconPerso = new google.maps.MarkerImage(locations[i][3],
+		/* dimensions de l'image */
+		new google.maps.Size(80,86),
+		/* Origine de l'image 0,0. */
+		new google.maps.Point(0,0),
+		/* l'ancre (point d'accrochage sur la map) du picto
+		(varie en fonction de ces dimensions) */
+		new google.maps.Point(40,86)
+	    );
+	    marker = new google.maps.Marker({
+	      position: new google.maps.LatLng(locations[i][1], locations[i][2]),
+	      map: map,
+	      title: locations[i][0],
+	      icon : monIconPerso
+	    });
+	    bindInfoWindow(marker, map, infowindow, popover[i]);
+	};
+	function bindInfoWindow(marker, map, infowindow, strDescription) {
+	    google.maps.event.addListener(marker, 'click', function() {
+		infowindow.setContent(strDescription.toString());
+		infowindow.open(map, marker);
+	    });
+	    google.maps.event.addListener(infowindow, 'closeclick', function() {  
+		map.panTo(myLatlng);            
+	    });
+	};
+    }
+    $(document).ready(function() {
+	$('#slide-titre1').waypoint(function(direction) {
+	    initializeMap();
+	},{
+	    triggerOnce: true,
+	    offset: '50%' 
+	});
+	
+	jQuery(document).bind('dblclick',function(e){
+	    e.preventDefault();
+	    
+	});
+	$('#galereya').waypoint(function(direction) {
+	    $('#calendar').fullCalendar({
+			editable:false,
+			eventStartEditable: false,
+			eventDurationEditable: false,
+			disableResizing: true,
+			disableDragging: true,
+			aspectRatio: 1.5,
+			firstDay: 1,
+			monthNames:['Jan.','Fev.','Mars.','Avr.','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Dec.'],
+			monthNamesShort:['Jan.','Fev.','Mars.','Avr.','Mai','Juin','Juil.','Août','Sept.','Oct.','Nov.','Dec.'],
+			dayNames: ['Dimanche','Lundi','Mardi','Mercredi','Jeudi','Vendredi','Samedi'],
+			dayNamesShort: ['Dim', 'Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam'],
+			eventColor: '#428bca',
+			events: "{{ path('load_json') }}",
+			eventAfterAllRender : function( view ) {adjustFullcalendar(); }
+	    });
+	    genereadresse("cadoux.loc","gmail.com");
+	    generesubmit()
+	    
+	},{
+	    triggerOnce: true
+	});
+	$window = $(window);
+	$slide = $('.homeSlide');
+	$slideTall = $('.homeSlideTall');
+	$slideTall2 = $('.homeSlideTall2');
+	$body = $('body');
+	$( "#map-btn" ).on( "click", function() {
+	    $('#map-canvas').toggleClass('transition');
+	    $('#map-btn').toggleClass('transition');
+	    $('#map-info').toggleClass('transition');
+	});
+	g = $('#galereya').galereya({
+	    wave: false,
+	    slideShowSpeed: 5000,
+	    disableSliderOnClick: false,
+	    load: function(next) {
+		var data =
+		    [
+			{"lowsrc":"{{ asset('img/mini/brehat-location-portail.jpg') }}","fullsrc":"{{ asset('img/maxi/brehat-location-portail.jpg') }}","description":"Maison entrée","category":"outsite"},
+			{"lowsrc":"{{ asset('img/mini/brehat-location-face.jpg') }}","fullsrc":"{{ asset('img/maxi/brehat-location-face.jpg') }}","description":"Maison face","category":"outside"},
+			{"lowsrc":"{{ asset('img/mini/brehat-location-glycine.jpg') }}","fullsrc":"{{ asset('img/maxi/brehat-location-glycine.jpg') }}","description":"Glycine en fleur","category":"outside"},
+			{"lowsrc":"{{ asset('img/mini/brehat-location-chambre-1.jpg') }}","fullsrc":"{{ asset('img/maxi/brehat-location-chambre-1.jpg') }}","description":"Chambre Rdc","category":"outside"},
+			{"lowsrc":"{{ asset('img/mini/brehat-location-chambre-2.jpg') }}","fullsrc":"{{ asset('img/maxi/brehat-location-chambre-2.jpg') }}","description":"Chambre Etage","category":"outside"},
+			{"lowsrc":"{{ asset('img/mini/brehat-location-chambre-3.jpg') }}","fullsrc":"{{ asset('img/maxi/brehat-location-chambre-3.jpg') }}","description":"Chambre Etage","category":"outside"},
+			{"lowsrc":"{{ asset('img/mini/brehat-location-sdb.jpg') }}","fullsrc":"{{ asset('img/maxi/brehat-location-sdb.jpg') }}","description":"Salle de Bain","category":"inside"},
+			{"lowsrc":"{{ asset('img/mini/brehat-location-salon.jpg') }}","fullsrc":"{{ asset('img/maxi/brehat-location-salon.jpg') }}","description":"Salon","category":"inside"},
+			{"lowsrc":"{{ asset('img/mini/brehat-location-salon2.jpg') }}","fullsrc":"{{ asset('img/maxi/brehat-location-salon2.jpg') }}","description":"Salon","category":"inside"},
+			{"lowsrc":"{{ asset('img/mini/brehat-location-salon3.jpg') }}","fullsrc":"{{ asset('img/maxi/brehat-location-salon3.jpg') }}","description":"Salon","category":"inside"},
+			{"lowsrc":"{{ asset('img/mini/brehat-location-cuisine.jpg') }}","fullsrc":"{{ asset('img/maxi/brehat-location-cuisine.jpg') }}","description":"Cuisine","category":"inside"},
+			{"lowsrc":"{{ asset('img/mini/brehat-location-pergola.jpg') }}","fullsrc":"{{ asset('img/maxi/brehat-location-pergola.jpg') }}","description":"Pergola Jardin","category":"outside"},
+		    ]
+		next(data);
+	    }
+	});
+	adjustWindow();
+	setTimeout(function() {
+	    $body.removeClass('loading').addClass('loaded');
+	    $body.promise().done(function(){
+		setTimeout(function() {
+		    $('#blur').addClass('loaded').bind("transitionend webkitTransitionEnd oTransitionEnd MSTransitionEnd", function(){ $(this).remove() });;
+		    setTimeout(function() {
+			$("#test").velocity({marginTop: [ 30, "easeOutCubic" ] },400);
+			
+		    }, 1000);
+		    $('.carousel').carousel({
+			interval: 8000
+		      });
+		}, 800);
+	    });
+	}, 800);
+    });
+</script>
+
+    </body>
+</html>
+
+   
+

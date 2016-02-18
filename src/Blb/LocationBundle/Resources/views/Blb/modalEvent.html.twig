@@ -1,0 +1,111 @@
+<div class="panel-{%if oReservation.title == 'Indisponible'%}danger{%else%}primary{%endif%}" >
+	<div class="panel-heading">
+		<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+		<h4 class="modal-title ">
+			<i class="fa fa-magic"></i>
+			{%if (oReservation.title == 'Indisponible')%}Indisponibilité{%else%}Réservation{%endif%} créée le {{oReservation.createdAt|date("d/m/Y")}}
+			
+		</h4>
+	</div>
+</div>
+<div class="modal-body">
+	
+        <dl>
+            <dt>1. Arrivée des locataires</dt>
+	    <dd>
+		<div class="input-group">
+			<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+			<input id="date_start" class="form-control" placeholder="Date arrivée" value="{{oReservation.start|date("Y-m-d")}}">
+		</div>
+	    </dd>
+            <dt>2. Départ des locataires</dt>
+	    <dd>
+		<div class="input-group">
+			<span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+			<input id="date_end" class="form-control" placeholder="Date Départ" value="{{oReservation.end|date("Y-m-d")}}">
+		</div>
+	    </dd>
+        </dl>
+	<div class="btn-group btn-group-justified">
+		<div class="btn-group">
+			<button type="button" class="btn btn-default" onclick="updateReservation({{oReservation.id}})"><i class="fa fa-refresh"></i> Modifier</button>
+		</div>
+		<div class="btn-group">
+			<a href="{{ path('reservation_event_remove', {'event_id': oReservation.id}) }}" class="btn btn-default" onclick="return confirm('Es tu sûre de supprimer cette réservation ?')"><i class="fa fa-trash-o"></i> Supprimer</a>
+		</div>
+	</div>
+</div>
+
+<div class="modal-footer">
+        <button type="button" class="btn btn-{%if oReservation.title == 'Indisponible'%}danger{%else%}primary{%endif%}" data-dismiss="modal">Fermer</button>
+</div>
+<script>
+	function updateReservation(event_id){
+	    if (!checkInputUpdate()){
+		alert('Au moins une date n\'est pas renseignée !');
+	    }else{
+		$.ajax({
+		    
+			    url: "{{ path('reservation_update') }}",
+			    data: "start="+$('#date_start').val()+"&end="+$('#date_end').val()+"&event_id="+event_id,
+			    type: "POST",
+			    cache: false,
+			    success: function(json){
+				$('#ModalEvent').modal('hide');
+				    $('#calendar').fullCalendar( 'refetchEvents' );
+				    alert('Réservation mise à jour !');
+			    },
+			    error: function(responseText){
+				alert('Problème lors de la modification de la réservation !');
+			    }
+			}); 
+	    }
+	    
+	}
+	function checkInputUpdate() {
+	    if ((!($('#date_start').val()))||(!($('#date_end').val()))) {
+		return false;
+	    }
+	    return true;
+	}
+	$('#date_start').daterangepicker(
+            { 
+                format: 'YYYY-MM-DD',
+                startDate: $('#date_start').val(),
+		endDate: $('#date_end').val(),
+                singleDatePicker: true,
+                locale: {
+                    applyLabel: 'Valider',
+                    fromLabel: 'De',
+                    toLabel: 'A',
+                    customRangeLabel: 'Custom Range',
+                    daysOfWeek: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve','Sa'],
+                    monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                    firstDay: 1
+                }
+            },
+	    function(start, end, label) {
+	      //$('#date_end').data('daterangepicker').setStartDate(start);
+	    }
+        );
+	$('#date_end').daterangepicker(
+            { 
+                format: 'YYYY-MM-DD',
+                startDate: $('#date_start').val(),
+		endDate: $('#date_end').val(),
+                singleDatePicker: true,
+                locale: {
+                    applyLabel: 'Valider',
+                    fromLabel: 'De',
+                    toLabel: 'A',
+                    customRangeLabel: 'Custom Range',
+                    daysOfWeek: ['Di', 'Lu', 'Ma', 'Me', 'Je', 'Ve','Sa'],
+                    monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Aout', 'Septembre', 'Octobre', 'Novembre', 'Decembre'],
+                    firstDay: 1
+                }
+            },
+	    function(start, end, label) {
+	      $('#date_start').data('daterangepicker').setEndDate(end);
+	    }
+        );
+</script>

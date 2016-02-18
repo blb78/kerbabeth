@@ -1,0 +1,3 @@
+blb_location:
+    resource: "@BlbLocationBundle/Controller/"
+    type:     annotation

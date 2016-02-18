@@ -1,0 +1,36 @@
+{# app/Resources/views/layout.html.twig #}
+
+<!DOCTYPE html>
+<html style="color: #FFF" lang="fr">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html">
+        <meta charset="utf-8">
+        <meta name="viewport" content="initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,width=device-width,user-scalable=no">
+        <meta name="description" content="Chez babeth, location de maison sur l\'ile de Bréhat. Accessible aux personnes à mobilité réduite.">
+        <meta name="keywords" content="ile,île,Ile,Île,bréhat,Bréhat,brehat,Brehat,Location,location,Locations,locations,Maisons,maisons,maison,Maison,
+        réservation,réservations,reservation,reservations,Tourisme, tourisme, granit,rose,enfants,enfant,jardin,villa,Handicapé,handicapé,mobilité">
+        <meta name="robots" content="index">
+        <meta name="REVISIT-AFTER" content="7 days">
+        <title>{% block title %}KerBabeth, location de maison sur l\'île de Bréhat{% endblock %}</title>
+        <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+	<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" href="//brick.a.ssl.fastly.net/Lato:400">
+        
+	<link rel="stylesheet" href="{{ asset('css/dashboard.css') }}" type="text/css" />
+        
+    </head>
+    <body class="loading" >
+        {% block body %}{% endblock %}
+	{% block javascripts %}
+	    <script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+	    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	    <script type="text/javascript" src="{{ asset('js/jquery-ui-1.9.2.custom.min.js') }}"></script>
+	    <script type="text/javascript" src="{{ asset('js/fullcalendar.min.js') }}"></script>
+	    <script type="text/javascript" src="{{ asset('js/moment.min.js') }}"></script>
+	    <script type="text/javascript" src="{{ asset('js/daterangepicker.js') }}"></script>
+	    
+	{% endblock %}
+    </body>
+</html>
+   
+    

@@ -1,0 +1,61 @@
+SetEnv SHORT_OPEN_TAGS 0
+SetEnv REGISTER_GLOBALS 0
+SetEnv MAGIC_QUOTES 0
+SetEnv SESSION_AUTOSTART 0
+SetEnv ZEND_OPTIMIZER 1
+SetEnv PHP_VER 5_3 
+AddType x-mapp-php5 .php
+
+<IfModule mod_rewrite.c>
+    Options -MultiViews
+ 
+    RewriteEngine On
+    #RewriteBase /path/to/app
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ app.php [L]
+</IfModule>
+
+
+# compression avec MOD_DEFLATE
+AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript application/atom+xml application/rss+xml application/xml application/javascript
+
+# les proxys ne doivent pas décompresser le contenu à la place de l'internaute
+Header append Vary User-Agent env=!dont-vary
+<IfModule mod_headers.c>
+  # Mise en cache des images et autres fichier statiques pour un mois
+  <FilesMatch ".(ico|jpe?g|png|gif|swf|flv|css|js|gz|pdf)$">
+    Header unset Cookie
+    Header unset Set-Cookie
+    Header set Cache-Control "max-age=604800 "
+  </FilesMatch>
+  
+
+
+  # Mise en cache du html et xml pour 12 heures
+  <filesMatch ".(html|htm|xml)$">
+   Header set Cache-Control "max-age=43200"
+  </filesMatch>
+
+  # Désactive la mise en cache pour les fichier PHP et CGI
+  <FilesMatch ".(php|cgi)$">
+   Header unset Cache-Control
+  </FilesMatch>
+</IfModule>
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresDefault "access plus 604800  seconds"
+  ExpiresByType image/gif "access plus 604800  seconds"
+  ExpiresByType image/ico "access plus 604800  seconds"
+  ExpiresByType image/jpg "access plus 604800  seconds"
+  ExpiresByType image/png "access plus 604800  seconds"
+  ExpiresByType image/jpeg "access plus 604800  seconds"
+  ExpiresByType image/icon "access plus 604800  seconds"
+  ExpiresByType image/x-icon "access plus 604800  seconds"
+  ExpiresByType text/css "access plus 604800  seconds"
+  ExpiresByType text/html "access plus 604800  seconds"
+  ExpiresByType text/javascript "access plus 604800  seconds"
+  ExpiresByType application/xhtml+xml "access plus 7200 seconds"
+  ExpiresByType application/x-javascript "access plus 604800  seconds"
+  ExpiresByType application/x-shockwave-flash "access plus 604800  seconds"
+</IfModule>
+
